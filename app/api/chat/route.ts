@@ -28,3 +28,11 @@ If you don't know a number, say you’re not sure and suggest checking the dashb
     return new Response(JSON.stringify({ error: "Chat failed" }), { status: 500 });
   }
 }
+
+// 👇 Temporary GET for testing (you can delete later)
+export async function GET() {
+  const hasKey = !!process.env.GROQ_API_KEY;
+  return new Response(JSON.stringify({ ok: true, hasKey }), {
+    headers: { "Content-Type": "application/json" },
+  });
+}
