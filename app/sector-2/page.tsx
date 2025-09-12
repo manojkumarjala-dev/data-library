@@ -16,7 +16,7 @@ export default function Sector1() {
         transition={{ duration: 0.5 }}
         className="mx-auto max-w-none"
       >
-        <h1 className="text-2xl font-bold text-gray-800 mb-8">Sector 1 Dashboard</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-8">Sector 2 Dashboard</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-3 w-fit">
