@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import ChatWidget from './components/ChatWidget';   // 👈 import added
 
 const container = {
   hidden: { opacity: 0 },
@@ -27,9 +28,15 @@ export default function Home() {
     >
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div variants={item} className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Welcome to the Heartland Community Network Data Library</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            Welcome to the Heartland Community Network Data Library
+          </h1>
           <p className="text-lg max-w-3xl mx-auto">
-            HCN supports small businesses and rural communities by delivering accessible, tech-focused consulting services in digital presence, marketing, and business strategy—driven by a dedicated team of professionals working to foster local innovation and sustainable growth through technology
+            HCN supports small businesses and rural communities by delivering
+            accessible, tech-focused consulting services in digital presence,
+            marketing, and business strategy—driven by a dedicated team of
+            professionals working to foster local innovation and sustainable
+            growth through technology
           </p>
         </motion.div>
 
@@ -75,9 +82,13 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </main>
+
       <motion.footer variants={item} className="text-center mt-16">
         <p>&copy; 2025 Heartland Community Network</p>
       </motion.footer>
+
+      {/* 👇 Chat widget floats at bottom-right */}
+      <ChatWidget />
     </motion.div>
   );
 }
