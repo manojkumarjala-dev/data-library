@@ -1,10 +1,12 @@
-export const runtime = "nodejs"; // start with nodejs for reliability; you can try "edge" later
+export const runtime = "nodejs"; // use nodejs runtime for reliability; you can switch to "edge" later
 
 type Msg = { role: "user" | "assistant" | "system"; content: string };
 
 export async function POST(req: Request) {
   try {
+    // Safely parse the request body
     const { messages = [] } = (await req.json()) as { messages: Msg[] };
+
     const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
       return new Response(JSON.stringify({ error: "Missing GROQ_API_KEY" }), { status: 500 });
@@ -23,7 +25,7 @@ export async function POST(req: Request) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "llama3-70b-8192",
+        model: "llama-3.1-8b-instant", // or "llama-3.1-70b-versatile"
         temperature: 0.3,
         max_tokens: 400,
         messages: [system, ...messages],
@@ -45,7 +47,7 @@ export async function POST(req: Request) {
   }
 }
 
-// Keep this temporary GET while debugging
+// Temporary GET endpoint for debugging (you can remove later)
 export async function GET() {
   const hasKey = !!process.env.GROQ_API_KEY;
   return new Response(JSON.stringify({ ok: true, hasKey }), {
