@@ -7,25 +7,20 @@ import { useEffect, useRef, useState } from "react";
 type Msg = { role: "user" | "assistant"; content: string };
 
 type ChatWidgetProps = {
-  /** Open immediately on mount (every time). Leave false to open via button. */
   defaultOpen?: boolean;
-  /** Optional assistant message shown once when panel opens. */
   greeting?: string;
 };
 
 export default function ChatWidget({ defaultOpen = false, greeting }: ChatWidgetProps) {
-  // Always start closed, then open via effect if needed (avoids hydration mismatch)
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const boxRef = useRef<HTMLDivElement>(null);
 
-  // Auto-open on mount if defaultOpen=true
   useEffect(() => {
     if (defaultOpen) setOpen(true);
   }, [defaultOpen]);
 
-  // Optional greeting when panel first opens
   useEffect(() => {
     if (open && greeting && msgs.length === 0) {
       setMsgs([{ role: "assistant", content: greeting }]);
@@ -33,7 +28,6 @@ export default function ChatWidget({ defaultOpen = false, greeting }: ChatWidget
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, greeting]);
 
-  // Auto-scroll to bottom on new messages/open
   useEffect(() => {
     boxRef.current?.scrollTo(0, 999999);
   }, [msgs, open]);
@@ -59,6 +53,16 @@ export default function ChatWidget({ defaultOpen = false, greeting }: ChatWidget
     }
   }
 
+  // helper: render assistant content as paragraphs (split on blank lines)
+  function renderAssistant(content: string) {
+    const parts = content.trim().split(/\n{2,}/); // paragraphs on double newline
+    return parts.map((p, idx) => (
+      <p key={idx} className="mb-2 last:mb-0">
+        {p.replace(/\n+/g, " ")} {/* collapse single newlines to spaces */}
+      </p>
+    ));
+  }
+
   return (
     <>
       <button
@@ -80,21 +84,25 @@ export default function ChatWidget({ defaultOpen = false, greeting }: ChatWidget
               </p>
             )}
 
-            {msgs.map((m, i) => (
-              <div key={i} className={m.role === "user" ? "text-right" : "text-left"}>
-                <div
-                  className={[
-                    "inline-block px-3 py-2 rounded-2xl max-w-[85%]",
-                    "break-words whitespace-normal", // ✅ natural wrapping; no jagged right edge
-                    m.role === "user"
-                      ? "bg-gray-900 text-white"
-                      : "bg-gray-100 text-gray-900 text-left",
-                  ].join(" ")}
-                >
-                  {m.content}
+            {msgs.map((m, i) => {
+              const isUser = m.role === "user";
+              return (
+                <div key={i} className={isUser ? "text-right" : "text-left"}>
+                  <div
+                    className={[
+                      "inline-block px-3 py-2 rounded-2xl max-w-[85%]",
+                      "break-words whitespace-normal",
+                      isUser
+                        ? "bg-gray-900 text-white"
+                        : // ✅ justify assistant text; keep last line left; enable hyphenation
+                          "bg-gray-100 text-gray-900 text-left [text-align:justify] [text-align-last:left] hyphens-auto leading-relaxed",
+                    ].join(" ")}
+                  >
+                    {isUser ? m.content : renderAssistant(m.content)}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <form
