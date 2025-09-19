@@ -14,7 +14,8 @@ type ChatWidgetProps = {
 };
 
 export default function ChatWidget({ defaultOpen = false, greeting }: ChatWidgetProps) {
-  const [open, setOpen] = useState(defaultOpen);
+  // Always start closed, then open via effect if needed (avoids hydration mismatch)
+  const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const boxRef = useRef<HTMLDivElement>(null);
