@@ -1,15 +1,38 @@
+// Expects /api/chat to return JSON: { reply: string }
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-export default function ChatWidget() {
-  const [open, setOpen] = useState(false);
+type ChatWidgetProps = {
+  /** Open immediately on mount (every time). Leave false to open via button. */
+  defaultOpen?: boolean;
+  /** Optional assistant message shown once when panel opens. */
+  greeting?: string;
+};
+
+export default function ChatWidget({ defaultOpen = false, greeting }: ChatWidgetProps) {
+  const [open, setOpen] = useState(defaultOpen);
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const boxRef = useRef<HTMLDivElement>(null);
 
+  // Auto-open on mount if defaultOpen=true
+  useEffect(() => {
+    if (defaultOpen) setOpen(true);
+  }, [defaultOpen]);
+
+  // Optional greeting when panel first opens
+  useEffect(() => {
+    if (open && greeting && msgs.length === 0) {
+      setMsgs([{ role: "assistant", content: greeting }]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, greeting]);
+
+  // Auto-scroll to bottom on new messages/open
   useEffect(() => {
     boxRef.current?.scrollTo(0, 999999);
   }, [msgs, open]);
@@ -26,8 +49,13 @@ export default function ChatWidget() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: next }),
     });
-    const data = await res.json();
-    setMsgs((m) => [...m, { role: "assistant", content: data.reply ?? "No reply." }]);
+
+    try {
+      const data: { reply?: string } = await res.json();
+      setMsgs((m) => [...m, { role: "assistant", content: data.reply ?? "No reply." }]);
+    } catch {
+      setMsgs((m) => [...m, { role: "assistant", content: "There was an error parsing the response." }]);
+    }
   }
 
   return (
@@ -45,7 +73,7 @@ export default function ChatWidget() {
           <div className="p-3 border-b font-semibold">Ask DataLibrary</div>
 
           <div ref={boxRef} className="flex-1 overflow-auto p-3 space-y-3">
-            {msgs.length === 0 && (
+            {msgs.length === 0 && !greeting && (
               <p className="text-sm text-gray-500">
                 Try: “What’s on this site?” or “How often is data updated?”
               </p>
@@ -56,7 +84,7 @@ export default function ChatWidget() {
                 <div
                   className={[
                     "inline-block px-3 py-2 rounded-2xl max-w-[85%]",
-                    "break-words whitespace-normal", // ✅ FIX: natural wrapping, no jagged edge
+                    "break-words whitespace-normal", // ✅ natural wrapping; no jagged right edge
                     m.role === "user"
                       ? "bg-gray-900 text-white"
                       : "bg-gray-100 text-gray-900 text-left",
