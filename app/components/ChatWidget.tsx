@@ -27,7 +27,7 @@ export default function ChatWidget() {
       body: JSON.stringify({ messages: next }),
     });
     const data = await res.json();
-    setMsgs((m) => [...m, { role: "assistant", content: data.reply }]);
+    setMsgs((m) => [...m, { role: "assistant", content: data.reply ?? "No reply." }]);
   }
 
   return (
@@ -35,6 +35,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen((o) => !o)}
         className="fixed bottom-5 right-5 rounded-full bg-gray-900 text-white px-4 py-2 shadow-lg"
+        aria-expanded={open}
       >
         {open ? "Close Chat" : "Chat"}
       </button>
@@ -46,15 +47,20 @@ export default function ChatWidget() {
           <div ref={boxRef} className="flex-1 overflow-auto p-3 space-y-3">
             {msgs.length === 0 && (
               <p className="text-sm text-gray-500">
-                Try: “What’s on the Workforce dashboard?” or “How often is data updated?”
+                Try: “What’s on this site?” or “How often is data updated?”
               </p>
             )}
+
             {msgs.map((m, i) => (
               <div key={i} className={m.role === "user" ? "text-right" : "text-left"}>
                 <div
-                  className={`inline-block px-3 py-2 rounded-2xl ${
-                    m.role === "user" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
-                  }`}
+                  className={[
+                    "inline-block px-3 py-2 rounded-2xl max-w-[85%]",
+                    "break-words whitespace-normal", // ✅ FIX: natural wrapping, no jagged edge
+                    m.role === "user"
+                      ? "bg-gray-900 text-white"
+                      : "bg-gray-100 text-gray-900 text-left",
+                  ].join(" ")}
                 >
                   {m.content}
                 </div>
@@ -62,7 +68,13 @@ export default function ChatWidget() {
             ))}
           </div>
 
-          <form onSubmit={(e) => { e.preventDefault(); send(); }} className="p-2 border-t flex gap-2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              send();
+            }}
+            className="p-2 border-t flex gap-2"
+          >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
