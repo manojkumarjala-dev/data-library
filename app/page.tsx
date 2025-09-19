@@ -1,15 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import ChatWidget from './components/ChatWidget';   // 👈 import added
+import ChatWidget from './components/ChatWidget';
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.2 },
   },
 };
 
@@ -18,7 +16,7 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
     <motion.div
       initial="hidden"
@@ -87,8 +85,11 @@ export default function Home() {
         <p>&copy; 2025 Heartland Community Network</p>
       </motion.footer>
 
-      {/* 👇 Chat widget floats at bottom-right */}
-      <ChatWidget />
+      {/* Chat widget floats at bottom-right; opens with a greeting */}
+      <ChatWidget
+        defaultOpen
+        greeting="Hi! I’m here to help. What would you like to know?"
+      />
     </motion.div>
   );
 }
