@@ -48,7 +48,7 @@ export default function HomePage() {
             className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
             whileHover={{ scale: 1.05, z: 10 }}
           >
-            <h2 className="text-2xl font-bold mb-2">Sector 1</h2>
+            <h2 className="text-2xl font-bold mb-2">Health care Sector</h2>
             <p>Explore the data for Sector 1.</p>
           </motion.a>
           <motion.a
@@ -57,7 +57,7 @@ export default function HomePage() {
             className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
             whileHover={{ scale: 1.05, z: 10 }}
           >
-            <h2 className="text-2xl font-bold mb-2">Sector 2</h2>
+            <h2 className="text-2xl font-bold mb-2">Food Security</h2>
             <p>Explore the data for Sector 2.</p>
           </motion.a>
           <motion.a
@@ -66,7 +66,7 @@ export default function HomePage() {
             className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
             whileHover={{ scale: 1.05, z: 10 }}
           >
-            <h2 className="text-2xl font-bold mb-2">Sector 3</h2>
+            <h2 className="text-2xl font-bold mb-2">Education Sector</h2>
             <p>Explore the data for Sector 3.</p>
           </motion.a>
           <motion.a

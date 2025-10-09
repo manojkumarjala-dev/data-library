@@ -2,12 +2,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname(); // gives current route
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Dashboards", href: "/dashboards" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];
@@ -16,8 +16,14 @@ export default function Navbar() {
     <nav className="w-full h-auto py-8 px-15 flex items-center justify-between bg-white">
       {/* Logo */}
       <div className="flex items-center space-x-2">
-        <div className="w-6 h-6 bg-gray-300 rounded-sm"></div>
-        <span className="text-xl font-semibold text-blue-600">hcn dl</span>
+        <Image
+          src="/logo.avif"
+          alt="HCN Logo"
+          width={40}
+          height={40}
+          className="rounded-full"
+        />
+        <span className="text-xl font-semibold text-blue-600">Data Library Project</span>
       </div>
 
       {/* Right group (Nav + Buttons) */}

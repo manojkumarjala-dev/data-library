@@ -64,13 +64,13 @@ export default function Footer() {
           {/* Page Links Column */}
           <div className="flex flex-col space-y-2 text-gray-600 text-right">
             <a href="/sector-1" className="hover:text-blue-600">
-            sector-1
+            Healthcare
             </a>
             <a href="/sector-2" className="hover:text-blue-600">
-            sector-2
+            Food Security
             </a>
             <a href="/sector-3" className="hover:text-blue-600">
-            sector-3
+            Education
             </a>
             <a href="/sector-4" className="hover:text-blue-600">
             sector-4
@@ -80,7 +80,7 @@ export default function Footer() {
   
         {/* Bottom Bar */}
         <div className="w-full bg-blue-50 py-6 flex flex-col items-center text-center">
-          <span className="text-blue-600 font-bold">hcn dl</span>
+          <span className="text-blue-600 font-bold">Heartland Community Network - Data Library Initiative</span>
           <p className="text-sm text-gray-500 mt-1">
             © 2025 Heartland Community Network. All rights reserved.
           </p>
