@@ -1,14 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import ChatWidget from './components/ChatWidget';
 
 const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.2 },
   },
 };
 
@@ -17,7 +16,7 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
     <motion.div
       initial="hidden"
@@ -27,9 +26,15 @@ export default function Home() {
     >
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div variants={item} className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Welcome to the Heartland Community Network Data Library</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            Welcome to the Heartland Community Network Data Library
+          </h1>
           <p className="text-lg max-w-3xl mx-auto">
-            HCN supports small businesses and rural communities by delivering accessible, tech-focused consulting services in digital presence, marketing, and business strategy—driven by a dedicated team of professionals working to foster local innovation and sustainable growth through technology
+            HCN supports small businesses and rural communities by delivering
+            accessible, tech-focused consulting services in digital presence,
+            marketing, and business strategy—driven by a dedicated team of
+            professionals working to foster local innovation and sustainable
+            growth through technology
           </p>
         </motion.div>
 
@@ -75,9 +80,16 @@ export default function Home() {
           </motion.a>
         </motion.div>
       </main>
+
       <motion.footer variants={item} className="text-center mt-16">
         <p>&copy; 2025 Heartland Community Network</p>
       </motion.footer>
+
+      {/* Chat widget floats at bottom-right; opens with a greeting */}
+      <ChatWidget
+        defaultOpen
+        greeting="Hi! I’m here to help. What would you like to know?"
+      />
     </motion.div>
   );
 }
