@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import ChatWidget from './components/ChatWidget';
 
 const container = {
   hidden: { opacity: 0 },
@@ -84,12 +83,6 @@ export default function HomePage() {
       <motion.footer variants={item} className="text-center mt-16">
         <p>&copy; 2025 Heartland Community Network</p>
       </motion.footer>
-
-      {/* Chat widget floats at bottom-right; opens with a greeting */}
-      <ChatWidget
-        defaultOpen
-        greeting="Hi! I’m here to help. What would you like to know?"
-      />
     </motion.div>
   );
 }

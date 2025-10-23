@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Script from "next/script";
 import Footer from "./components/Footer";
+import ChatWidget from "./components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,7 +49,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <main>{children}</main>
+        <main>{children}
+          <ChatWidget
+                  greeting="Hi! I’m here to help. What would you like to know?"
+                />
+        </main>
         <Footer/>
       </body>
 

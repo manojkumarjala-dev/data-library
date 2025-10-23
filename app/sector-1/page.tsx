@@ -1,6 +1,7 @@
 import DashboardEmbed from '../components/DashboardEmbed';
 import LastUpdated from '../components/LastUpdated';
 
+
 export default function Sector1Page() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10 space-y-8">
@@ -15,7 +16,7 @@ export default function Sector1Page() {
       <section className="space-y-3">
         <h2 className="text-xl font-semibold">Dashboard</h2>
         <DashboardEmbed
-          url="https://playground.powerbi.com/sampleReportEmbed"
+          url="https://public.tableau.com/views/ShopifyOverviewRAWNutritionConcept/ShopifyOverview?:embed=y&:display_count=yes&:toolbar=no"
           title="Sector 1 Demo"
         />
       </section>
