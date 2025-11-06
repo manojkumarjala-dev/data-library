@@ -1,5 +1,6 @@
 import Text from "@/app/components/Text";
 import PersonCard from "@/app/components/PersonCard";
+import userImage from "@/public/user.svg";
 export default function About() {
     const teamData = [
         { name: "Alice Johnson", role: "CEO", imageUrl: "/images/alice.jpg" },
@@ -16,13 +17,12 @@ export default function About() {
 
     return (
     <div  className="bg-white flex-col justify-center">
-    <div className="w-full h-full px-20 py-32 bg-blue-50 flex flex-col items-center gap-2"> </div>
-
+    <div className="w-full h-full px-20 py-32 bg-blue-50 flex flex-col items-center gap-[var(--Utilities-Spacing-15,60px)]"> </div>
+<div className="w-full flex flex-col items-center bg-white gap-[60px] pt-[60px] pb-[60px]">
 <Text
   heading="Who We Are"
-  content="Heartland Community Network (HCN) is a non-profit empowering small businesses in Southern Central Indiana through digital growth. We offer services in website and app development, UI/UX design, marketing, financial modeling, cybersecurity, and tech training on AI and SEO. "
-  wrapperClassName="w-full relative flex justify-start px-15 py-5 text-left font-inter bg-white"
-
+  content="Heartland Community Network (HCN) is a non-profit empowering small businesses in Southern Central Indiana through digital growth. We offer services in website and app development, UI/UX design, marketing, financial modeling, cybersecurity, and tech training on AI and SEO."
+  wrapperClassName = "w-full relative flex flex-col justify-start px-[var(--Utilities-Spacing-20,80px)] gap-[var(--Utilities-Spacing-5,20px)] text-left font-inter bg-white"
 />
 
 <Text
@@ -38,30 +38,33 @@ export default function About() {
     </>
   }
   contentClassName="text-base leading-6 text-gray-800 space-y-4"
-  wrapperClassName="w-full relative flex justify-start px-15 py-5 text-left font-inter bg-white"
+  wrapperClassName = "w-full relative flex flex-col justify-start px-[var(--Utilities-Spacing-20,80px)] gap-[var(--Utilities-Spacing-5,20px)] text-left font-inter bg-white"
 
 />
+<div>
+
+
 <Text
   heading="Meet the Team"
   content=""
-  wrapperClassName="w-full relative flex justify-start px-15 py-5 text-left font-inter bg-white"
+  wrapperClassName = "w-full relative flex flex-col justify-start px-[var(--Utilities-Spacing-20,80px)] text-left font-inter bg-white"
 />
-<div className="flex flex-wrap justify-center gap-10 px-15 w-full mb-10">
+
+<div className="flex flex-wrap justify-center gap-[18px] px-15 w-full mb-10">
   {teamData.map((member, idx) => (
     <PersonCard
       key={idx}
       name={member.name}
       role={member.role}
-      imageUrl={member.imageUrl}
+      imageUrl={userImage}
     />
   ))}
+</div>
 </div>
 <div className="w-full sm:px-30 md:px-45 lg:px-60 flex flex-col gap-2">
   <div className="w-full h-px bg-gray-200"></div>
 </div>
-
-
-
+</div>
 
     </div>);
 }

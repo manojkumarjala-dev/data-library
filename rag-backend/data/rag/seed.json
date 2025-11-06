@@ -1,0 +1,37 @@
+[
+  { "id": "home-hero",   "text": "Data Library: explore sector dashboards and data summaries.", "metadata": { "route": "/" } },
+  { "id": "home-what", "text": "Each sector page shows high-level indicators with filters for county and timeframe. Users can compare trends and download charts.", "metadata": { "route": "/" } },
+  { "id": "home-updates", "text": "Dashboards are updated periodically; look for the 'Last updated' label on each page.", "metadata": { "route": "/" } },
+  {
+    "id": "sector-1-overview",
+    "text": "Sector 1 focuses on workforce and healthcare outcomes across Indiana counties. It highlights employment rates, wages, healthcare access, and the intersection of economic and health trends.",
+    "metadata": { "route": "/sector-1" }
+  },
+  {
+    "id": "sector-1-metrics",
+    "text": "Key metrics include unemployment rate, median household income, median hourly wage, availability of healthcare facilities, and the percentage of population with health insurance.",
+    "metadata": { "route": "/sector-1" }
+  },
+  {
+    "id": "sector-1-trends",
+    "text": "Over the past decade, rural counties have shown higher unemployment variability compared to urban areas. Median wages in healthcare occupations have risen steadily, reflecting statewide demand.",
+    "metadata": { "route": "/sector-1" }
+  },
+  {
+    "id": "sector-1-comparisons",
+    "text": "The dashboard allows comparison of workforce participation and healthcare access across counties. For example, Monroe and Dubois counties consistently show stronger employment outcomes than neighboring counties.",
+    "metadata": { "route": "/sector-1" }
+  },
+  {
+    "id": "sector-1-data-sources",
+    "text": "Data for this sector is compiled from the U.S. Census Bureau, Bureau of Labor Statistics, and Indiana Department of Health. Updates occur quarterly to ensure the latest labor and healthcare trends are captured.",
+    "metadata": { "route": "/sector-1" }
+  },
+  {
+    "id": "sector-1-usecases",
+    "text": "This sector helps policymakers, workforce boards, and healthcare providers identify areas with rising unemployment, wage gaps, or limited health services, enabling targeted interventions.",
+    "metadata": { "route": "/sector-1" }
+  }
+]
+
+

@@ -47,7 +47,7 @@ export default function Contact() {
           content="For more information on any topic, please send a message and we'll get back to you promptly."
           headingClassName="text-3xl font-bold text-blue-600 "
           contentClassName="text-gray-700 text-base mb-10"
-
+          wrapperClassName="w-full relative flex justify-start px-[var(--Utilities-Spacing-20,80px)] py-[40px] text-left font-inter bg-white"
         />
 
 

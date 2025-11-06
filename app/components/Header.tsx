@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import userIcon from "@/public/user.svg";
 
 export default function Navbar() {
   const pathname = usePathname(); // gives current route
@@ -13,7 +14,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="w-full h-auto py-8 px-15 flex items-center justify-between bg-white">
+    <nav className="w-full h-auto px-[var(--Utilities-Spacing-20,80px)] py-[var(--Utilities-Spacing-7_5,30px)] flex items-center justify-between bg-white">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <Image
@@ -23,7 +24,9 @@ export default function Navbar() {
           height={40}
           className="rounded-full"
         />
-        <span className="text-xl font-semibold text-blue-600">Data Library Project</span>
+        <span className="text-xl font-semibold text-blue-600">
+          Data Library Project
+        </span>
       </div>
 
       {/* Right group (Nav + Buttons) */}
@@ -50,25 +53,22 @@ export default function Navbar() {
 
         {/* Buttons */}
         <div className="flex items-center space-x-3">
-          <Link
-            href="/login"
-            className={`px-4 py-2 rounded-lg border transition-colors ${
-              pathname === "/login"
-                ? "border-blue-600 text-blue-600"
-                : "border-gray-300 text-gray-700 hover:bg-gray-100"
-            }`}
-          >
-            Log in
+          <Link href="/login">
+            <button
+              type="button"
+              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none "
+            >
+              <Image src={userIcon} alt="Login" width={16} height={16} />
+              Login
+            </button>
           </Link>
-          <Link
-            href="/signup"
-            className={`px-4 py-2 rounded-lg transition-colors ${
-              pathname === "/signup"
-                ? "bg-blue-700 text-white"
-                : "bg-blue-600 text-white hover:bg-blue-700"
-            }`}
-          >
-            Sign up
+          <Link href="/signup">
+            <button
+              type="button"
+              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              Sign up
+            </button>
           </Link>
         </div>
       </div>

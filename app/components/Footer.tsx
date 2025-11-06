@@ -2,7 +2,7 @@ export default function Footer() {
     return (
       <footer className="w-full bg-white">
         {/* Top Section */}
-        <div className="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row justify-between items-start">
+        <div className="mw-full px-[80px] py-12 flex flex-col md:flex-row justify-between items-start">
           {/* Social Column */}
           <div>
             <h3 className="font-semibold text-gray-800 mb-4">Follow Us</h3>

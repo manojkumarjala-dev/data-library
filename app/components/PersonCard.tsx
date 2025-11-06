@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-
+import Image from "next/image";
 interface PersonCardProps {
   imageUrl?: string;
   name: string;
@@ -11,10 +11,14 @@ const PersonCard: FunctionComponent<PersonCardProps> = ({ imageUrl, name, role }
     <div className="flex flex-col items-center p-6 rounded-lg">
       {/* Profile Image */}
       {imageUrl ? (
-        <img
+        <Image
           src={imageUrl}
           className="w-40 h-40 rounded-full object-cover border border-gray-200 bg-blue-50"
-        />
+          alt={name}
+          width={120}
+          height={120}
+        >
+        </Image>
       ) : (
         <div className="w-40 h-40 rounded-full border border-gray-200 bg-blue-50"></div>
       )}

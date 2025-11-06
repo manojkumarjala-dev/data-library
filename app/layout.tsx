@@ -44,7 +44,10 @@ export default function RootLayout({
             });
           `}
         </Script>
+        <Script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></Script>
+
       </head>
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -55,6 +58,7 @@ export default function RootLayout({
                 />
         </main>
         <Footer/>
+        
       </body>
 
     </html>

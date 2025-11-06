@@ -1,6 +1,6 @@
-'use client';
-
-import { motion } from 'framer-motion';
+"use client";
+import Text from "./components/Text";
+import Image from "next/image";
 
 const container = {
   hidden: { opacity: 0 },
@@ -15,74 +15,89 @@ const item = {
   show: { opacity: 1, y: 0 },
 };
 
+const sectors = [
+  {
+    title: "Health care Sector",
+    description: "Explore the data for Sector 1.",
+    image: "",
+    link: "/sector-1",
+  },
+  {
+    title: "Food Security",
+    description: "Explore the data for Sector 2.",
+    image: "",
+    link: "/sector-2",
+  },
+  {
+    title: "Education Sector",
+    description: "Explore the data for Sector 3.",
+    image: "",
+    link: "/sector-3",
+  },
+  {
+    title: "Sector 4",
+    description: "Explore the data for Sector 4.",
+    image: "",
+    link: "/sector-4",
+  },
+];  
+
 export default function HomePage() {
   return (
-    <motion.div
-      initial="hidden"
-      animate="show"
-      variants={container}
-      className="font-sans min-h-screen p-8 pb-20"
-    >
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div variants={item} className="text-center">
-          <h1 className="text-4xl font-bold mb-4">
-            Welcome to the Heartland Community Network Data Library
-          </h1>
-          <p className="text-lg max-w-3xl mx-auto">
-            HCN supports small businesses and rural communities by delivering
-            accessible, tech-focused consulting services in digital presence,
-            marketing, and business strategy—driven by a dedicated team of
-            professionals working to foster local innovation and sustainable
-            growth through technology
-          </p>
-        </motion.div>
+    <div>
+      <div className="font-sans min-h-screen">
+        <main className="w-full bg-white">
+          <div className="px-[var(--Utilities-Spacing-20,80px)] py-[var(--Utilities-Spacing-32,128px)] bg-[#EFF6FF]">
+            <Text
+              heading="Welcome to the Heartland Community Network Data Library"
+              content="A collection of information from 11 Indiana counties"
+              headingClassName="text-4xl font-bold text-blue-600"
+              contentClassName="text-lg max-w-3xl mx-auto"
+              wrapperClassName="text-center gap-[12px] flex flex-col items-center"
+            />
+          </div>
 
-        <motion.div
-          variants={container}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12 mx-[20%] md:mx-[10%] lg:mx-[20%]"
-        >
-          <motion.a
-            variants={item}
-            href="/sector-1"
-            className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
-            whileHover={{ scale: 1.05, z: 10 }}
-          >
-            <h2 className="text-2xl font-bold mb-2">Health care Sector</h2>
-            <p>Explore the data for Sector 1.</p>
-          </motion.a>
-          <motion.a
-            variants={item}
-            href="/sector-2"
-            className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
-            whileHover={{ scale: 1.05, z: 10 }}
-          >
-            <h2 className="text-2xl font-bold mb-2">Food Security</h2>
-            <p>Explore the data for Sector 2.</p>
-          </motion.a>
-          <motion.a
-            variants={item}
-            href="/sector-3"
-            className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
-            whileHover={{ scale: 1.05, z: 10 }}
-          >
-            <h2 className="text-2xl font-bold mb-2">Education Sector</h2>
-            <p>Explore the data for Sector 3.</p>
-          </motion.a>
-          <motion.a
-            variants={item}
-            href="/sector-4"
-            className="p-6 rounded-lg bg-slate-100 shadow-lg transition-shadow"
-            whileHover={{ scale: 1.05, z: 10 }}
-          >
-            <h2 className="text-2xl font-bold mb-2">Sector 4</h2>
-            <p>Explore the data for Sector 4.</p>
-          </motion.a>
-        </motion.div>
-      </main>
+          <div>
+            <Text
+              heading="Sectors"
+              content="Explore datasets across various sectors that impact our community."
+              headingClassName="text-[#1F2937] font-inter text-2xl font-bold leading-normal tracking-[0.12px]"
+              contentClassName="text-[var(--Text-Secondary-Text-Color,#6B7280)] font-inter text-xl font-medium leading-normal tracking-[0.1px]"
+              wrapperClassName="w-full relative flex flex-col justify-start px-[var(--Utilities-Spacing-20,80px)] py-[var(--Utilities-Spacing-15,60px)] gap-[4px)] text-left font-inter bg-white"
+            />
+          </div>
+          <div className="px-[40]">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 place-items-center gap-[var(--Utilities-Spacing-10,40px)] pb-[40px] px-[40px] border-b border-gray-200">        
+      {sectors.map((sector, index) => (
+              <a
+                key={index}
+                className="w-[600px] flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-lg focus:outline-hidden focus:shadow-lg transition"
+                href={sector.link}
+              >
+                {sector.image.length > 0 ? (
+                  <Image
+                    width={600}
+                    height={200}
+                    src={sector.image}
+                    alt="Card Image"
+                    className="bg-blue-50"
+                  />
+                ) : (
+                  <div className="w-full h-[200px] bg-blue-50" />
+                )}
+                <div className="p-4 md:p-5">
+                  <h3 className="text-lg font-bold text-gray-800">
+                    {sector.title}
+                  </h3>
+                  <p>{sector.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+          </div>
 
-      <motion.footer variants={item} className="text-center mt-16">
-        <p>&copy; 2025 Heartland Community Network</p>
-      </motion.footer>
-    </motion.div>
+        </main>
+      </div>
+    </div>
   );
 }
